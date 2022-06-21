@@ -1,65 +1,26 @@
-setInterval(() => {
-    d=new Date();
-    htime=d.getHours();
-    mtime=d.getMinutes();
-    stime=d.getSeconds();
-    hrotation=htime*30+mtime/2;
-    mrotation=mtime*6;
-    srotation=stime*6;
-    hour.style.transform=`rotate(${hrotation}deg)`;
-    minute.style.transform=`rotate(${mrotation}deg)`;
-    second.style.transform=`rotate(${srotation}deg)`;
-}, 1000);
+let screen=document.getElementById('screen');
+let button=document.querySelectorAll('button');
+let screenValue="";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// setInterval(() => {
-//     d=new Date();
-//     htime=d.getHours();
-//     mtime=d.getMinutes();
-//     stime=d.getSeconds();
-//     hrotation=30*htime+mtime/2;
-//     mrotation=6*mtime;
-//     srotation=6*stime;
-
-//     hour.style.transform=`rotate(${hrotation}deg)`;
-//     minute.style.transform=`rotate(${mrotation}deg)`;
-//     second.style.transform=`rotate(${srotation}deg)`;
-// }, 1000);
+for(item of button){
+    item.addEventListener('click',(e)=>{
+        let buttonText=e.target.innerText;
+        // console.log(buttonText);
+        if(buttonText=='X'){
+            buttonText='*';
+            screenValue+=buttonText;
+            screen.value=screenValue;
+        }
+        else if(buttonText=='C'){
+            screenValue="";
+            screen.value=screenValue;
+        }
+        else if(buttonText=='='){
+            screen.value=eval(screenValue);
+        }
+        else{
+            screenValue+=buttonText;
+            screen.value=screenValue;
+        }
+    })
+}
